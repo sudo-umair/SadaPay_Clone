@@ -35,7 +35,7 @@ const LoadMoneyScreen = ({navigation}: LoadMoneyScreenProps) => {
     <View style={styles.rootContainer}>
       <Text style={styles.title}>Load money</Text>
       <Text style={styles.subtitle}>
-        <Text style={styles.amount}>Rs. {user.amount} </Text>
+        <Text style={styles.amount}>Rs. {user.monthlyLimit} </Text>
         incoming limit left this month!
       </Text>
 
@@ -43,7 +43,7 @@ const LoadMoneyScreen = ({navigation}: LoadMoneyScreenProps) => {
         <Text style={styles.cardTitle}>Receive Local Transfers</Text>
         <View style={styles.card}>
           <Text style={styles.cardSubtitle}>My SadaPay Account Number</Text>
-          <Text style={styles.number}>{user.monthlyLimit}</Text>
+          <Text style={styles.number}>{user.phone}</Text>
           <Pressable onPress={copyAccountNumber} style={styles.button}>
             <Icon name="copy1" size={20} color="#FA806B" />
             <Text style={styles.buttonText}>Copy</Text>
