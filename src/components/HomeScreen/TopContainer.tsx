@@ -8,10 +8,10 @@ type HomeScreenNavigationProp = HomeScreenProps['navigation'];
 // type HomeScreenRouteProp = HomeScreenProps['route'];
 
 const TopContainer = () => {
-  const navigate = useNavigation<HomeScreenNavigationProp>();
+  const navigation = useNavigation<HomeScreenNavigationProp>();
 
   const goToLoadMoney = () => {
-    navigate.navigate('LoadMoney');
+    navigation.navigate('LoadMoney');
   };
 
   return (
