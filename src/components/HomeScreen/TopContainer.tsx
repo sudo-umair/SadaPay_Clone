@@ -1,8 +1,19 @@
 import {StyleSheet, Text, View, Image, Pressable} from 'react-native';
 import React from 'react';
 import Feather_Icon from 'react-native-vector-icons/Feather';
+import {useNavigation} from '@react-navigation/native';
+import {HomeScreenProps} from '../../navigation/Types';
+
+type HomeScreenNavigationProp = HomeScreenProps['navigation'];
+// type HomeScreenRouteProp = HomeScreenProps['route'];
 
 const TopContainer = () => {
+  const navigate = useNavigation<HomeScreenNavigationProp>();
+
+  const goToLoadMoney = () => {
+    navigate.navigate('LoadMoney');
+  };
+
   return (
     <View style={styles.container}>
       <Pressable
@@ -26,9 +37,7 @@ const TopContainer = () => {
       </Pressable>
       <View style={styles.rightColumn}>
         <Pressable
-          onPress={() => {
-            console.log('Pressed');
-          }}
+          onPress={goToLoadMoney}
           android_ripple={{color: 'white', borderless: false}}
           style={styles.right_top}>
           <Feather_Icon name="arrow-down" size={30} color="white" />

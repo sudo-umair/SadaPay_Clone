@@ -3,9 +3,10 @@ import {createSlice} from '@reduxjs/toolkit';
 const initialState = {
   _id: '',
   name: '',
-  email: '',
+  phone: '',
   pin: '',
   token: '',
+  balance: 0,
   monthlyLimit: 0,
 };
 
@@ -15,21 +16,25 @@ export const userSlice = createSlice({
   reducers: {
     setUser: (state, action) => {
       state.name = action.payload.name;
-      state.email = action.payload.email;
+      state.phone = action.payload.phone;
       state.pin = action.payload.pin;
+      state.balance = action.payload.balance;
+      state.monthlyLimit = action.payload.monthlyLimit;
       state._id = action.payload._id;
       state.token = action.payload.token;
     },
     removeUser: state => {
       state.name = '';
-      state.email = '';
+      state.phone = '';
       state.pin = '';
+      state.balance = 0;
+      state.monthlyLimit = 0;
       state._id = '';
       state.token = '';
     },
   },
 });
 
-export const {} = userSlice.actions;
+export const {removeUser, setUser} = userSlice.actions;
 
 export default userSlice.reducer;

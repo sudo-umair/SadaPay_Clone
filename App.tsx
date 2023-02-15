@@ -6,6 +6,7 @@ import React from 'react';
 import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import {Provider} from 'react-redux';
 import AppNavigator from './src/navigation/AppNavigator';
+import {ToastProvider} from 'react-native-toast-notifications';
 import {store, persistor} from './src/redux/store';
 import {PersistGate} from 'redux-persist/integration/react';
 
@@ -14,7 +15,9 @@ function App(): JSX.Element {
     <SafeAreaView style={styles.rootContainer}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <AppNavigator />
+          <ToastProvider>
+            <AppNavigator />
+          </ToastProvider>
         </PersistGate>
       </Provider>
       <StatusBar barStyle={'dark-content'} backgroundColor={'#F2F6F7'} />

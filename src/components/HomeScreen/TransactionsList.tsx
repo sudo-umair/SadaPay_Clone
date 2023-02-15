@@ -51,7 +51,9 @@ const TransactionsList = () => {
       <FlatList
         data={transactions}
         renderItem={({item, index}) => <RenderItem item={item} index={index} />}
-        keyExtractor={(item: ITransaction) => item._id.toString()}
+        keyExtractor={(item: ITransaction) =>
+          item._id.toString() + Math.random().toString()
+        }
         nestedScrollEnabled={true}
         style={styles.transactionsList}
       />
