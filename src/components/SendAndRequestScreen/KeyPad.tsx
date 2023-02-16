@@ -32,7 +32,7 @@ export default KeyPad;
 
 const styles = StyleSheet.create({
   keysContainer: {
-    flex: 4,
+    flex: 6,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',

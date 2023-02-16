@@ -17,8 +17,8 @@ const ButtonsContainer = ({
 
   return (
     <View style={styles.buttonsContainer}>
-      <Button disabled={disabled} title="Send" onPress={onSendPress} />
       <Button disabled={disabled} title="Request" onPress={onRequestPress} />
+      <Button disabled={disabled} title="Send" onPress={onSendPress} />
     </View>
   );
 };
