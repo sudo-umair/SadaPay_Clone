@@ -1,11 +1,11 @@
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import React, {useLayoutEffect} from 'react';
 import {LoadMoneyScreenProps} from '../../navigation/Types';
-import Icon from 'react-native-vector-icons/AntDesign';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../redux/store';
 import Clipboard from '@react-native-clipboard/clipboard';
 import {useToast} from 'react-native-toast-notifications';
+import Card from '../../components/LoadMoneyScreen/Card';
 
 const LoadMoneyScreen = ({navigation}: LoadMoneyScreenProps) => {
   const user = useSelector((state: RootState) => state.user);
@@ -25,9 +25,9 @@ const LoadMoneyScreen = ({navigation}: LoadMoneyScreenProps) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: true,
-      headerBackButtonMenuEnabled: true,
       headerTitle: '',
       headerShadowVisible: false,
+      statusBarColor: '#ffffff',
     });
   }, [navigation]);
 
@@ -38,18 +38,7 @@ const LoadMoneyScreen = ({navigation}: LoadMoneyScreenProps) => {
         <Text style={styles.amount}>Rs. {user.monthlyLimit} </Text>
         incoming limit left this month!
       </Text>
-
-      <View style={styles.cardContainer}>
-        <Text style={styles.cardTitle}>Receive Local Transfers</Text>
-        <View style={styles.card}>
-          <Text style={styles.cardSubtitle}>My SadaPay Account Number</Text>
-          <Text style={styles.number}>{user.phone}</Text>
-          <Pressable onPress={copyAccountNumber} style={styles.button}>
-            <Icon name="copy1" size={20} color="#FA806B" />
-            <Text style={styles.buttonText}>Copy</Text>
-          </Pressable>
-        </View>
-      </View>
+      <Card onPress={copyAccountNumber} account={user.phone} />
     </View>
   );
 };
@@ -73,40 +62,6 @@ const styles = StyleSheet.create({
   },
   amount: {
     color: '#FA806B',
-    fontWeight: 'bold',
-  },
-  cardContainer: {
-    marginTop: 20,
-  },
-  cardTitle: {
-    color: 'black',
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  card: {
-    marginTop: 10,
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#E5E5E5',
-    padding: 10,
-  },
-  cardSubtitle: {
-    color: 'grey',
-    fontSize: 15,
-  },
-  number: {
-    fontSize: 16,
-    color: 'black',
-    marginTop: 5,
-  },
-  button: {
-    flexDirection: 'row',
-    marginTop: 10,
-    overflow: 'hidden',
-  },
-  buttonText: {
-    color: '#FA806B',
-    marginLeft: 8,
     fontWeight: 'bold',
   },
 });
