@@ -14,6 +14,10 @@ const TopContainer = () => {
     navigation.navigate('LoadMoney');
   };
 
+  const goToSendAndRequest = () => {
+    navigation.navigate('SendAndRequest');
+  };
+
   return (
     <View style={styles.container}>
       <Pressable
@@ -45,6 +49,7 @@ const TopContainer = () => {
         </Pressable>
         <Pressable
           android_ripple={{color: 'white', borderless: false}}
+          onPress={goToSendAndRequest}
           style={styles.right_bottom}>
           <Feather_Icon
             name="arrow-up-right"

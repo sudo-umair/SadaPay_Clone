@@ -18,9 +18,6 @@ const RenderItem = ({item, index}: {item: ITransaction; index: number}) => {
         <Text style={[index === 0 ? styles.first_date : styles.date]}>
           {dateFormatter(item.date)}
         </Text>
-        <Text style={styles.amount}>
-          {transactionFormatter(item.type, item.amount)}
-        </Text>
       </View>
       <View style={styles.bottom_row}>
         <View style={styles.bottom_row_left}>
