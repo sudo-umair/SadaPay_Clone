@@ -3,12 +3,15 @@ import React from 'react';
 import Feather_Icon from 'react-native-vector-icons/Feather';
 import {useNavigation} from '@react-navigation/native';
 import {HomeScreenProps} from '../../navigation/Types';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../redux/store';
 
 type HomeScreenNavigationProp = HomeScreenProps['navigation'];
 // type HomeScreenRouteProp = HomeScreenProps['route'];
 
 const TopContainer = () => {
   const navigation = useNavigation<HomeScreenNavigationProp>();
+  const user = useSelector((state: RootState) => state.user);
 
   const goToLoadMoney = () => {
     navigation.navigate('LoadMoney');
@@ -28,7 +31,7 @@ const TopContainer = () => {
         style={styles.leftColumn}>
         <View style={styles.left_top}>
           <Text style={styles.text}>Current Balance</Text>
-          <Text style={styles.balance_amount}>Rs. 69,000</Text>
+          <Text style={styles.balance_amount}>Rs. {user.balance}</Text>
         </View>
         <View style={styles.left_bottom}>
           <Image
