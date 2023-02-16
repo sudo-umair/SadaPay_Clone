@@ -79,6 +79,7 @@ const SendAndRequestScreen = ({navigation}: SendAndRequestScreenProps) => {
       <InputAmount amount={amount} info={info} showInfo={showInfo} />
       <KeyPad onPress={handleKeyPress} />
       <ButtonsContainer
+        amount={amount}
         onSendPress={handleSendPayment}
         onRequestPress={handleRequestPayment}
       />

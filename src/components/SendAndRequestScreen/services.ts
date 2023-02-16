@@ -1,4 +1,4 @@
-export const checkIfUserHasEnoughBalance = async (
+export const checkIfUserHasEnoughBalance = (
   amount: number,
   balance: number,
 ) => {
@@ -6,4 +6,11 @@ export const checkIfUserHasEnoughBalance = async (
     return false;
   }
   return true;
+};
+
+export const checkAmountForDisable = (amount: number) => {
+  if (amount <= 0) {
+    return true;
+  }
+  return false;
 };

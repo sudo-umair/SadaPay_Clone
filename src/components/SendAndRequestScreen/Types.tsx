@@ -18,9 +18,11 @@ export interface KeyPadProps {
 export interface ButtonsContainerProps {
   onRequestPress: () => void;
   onSendPress: () => void;
+  amount: number;
 }
 
 export interface ButtonProps {
   onPress: () => void;
   title: string;
+  disabled?: boolean;
 }

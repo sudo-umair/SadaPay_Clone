@@ -1,16 +1,24 @@
 import {StyleSheet, View} from 'react-native';
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {type ButtonsContainerProps} from './Types';
 import Button from './Button';
+import {checkAmountForDisable} from './services';
 
 const ButtonsContainer = ({
   onRequestPress,
   onSendPress,
+  amount,
 }: ButtonsContainerProps) => {
+  const [disabled, setDisabled] = useState(true);
+
+  useEffect(() => {
+    setDisabled(checkAmountForDisable(amount));
+  }, [amount]);
+
   return (
     <View style={styles.buttonsContainer}>
-      <Button title="Send" onPress={onSendPress} />
-      <Button title="Request" onPress={onRequestPress} />
+      <Button disabled={disabled} title="Send" onPress={onSendPress} />
+      <Button disabled={disabled} title="Request" onPress={onRequestPress} />
     </View>
   );
 };
