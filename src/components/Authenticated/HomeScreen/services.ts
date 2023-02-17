@@ -1,6 +1,6 @@
 import {IMonths} from './Types';
 
-const MONTHS: IMonths = {
+export const MONTHS: IMonths = {
   0: 'Jan',
   1: 'Feb',
   2: 'Mar',

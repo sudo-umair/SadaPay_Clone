@@ -1,12 +1,12 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React, {useLayoutEffect, useState} from 'react';
 import {type SendAndRequestScreenProps} from '../../navigation/Types';
-import {type CustomHeaderTextProps} from '../../components/SendAndRequestScreen/Types';
+import {type CustomHeaderTextProps} from '../../components/Authenticated/SendAndRequestScreen/Types';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../redux/store';
-import InputAmount from '../../components/SendAndRequestScreen/InputAmount';
-import KeyPad from '../../components/SendAndRequestScreen/KeyPad';
-import ButtonsContainer from '../../components/SendAndRequestScreen/ButtonsContainer';
+import InputAmount from '../../components/Authenticated/SendAndRequestScreen/InputAmount';
+import KeyPad from '../../components/Authenticated/SendAndRequestScreen/KeyPad';
+import ButtonsContainer from '../../components/Authenticated/SendAndRequestScreen/ButtonsContainer';
 
 const CustomHeaderText = ({balance}: CustomHeaderTextProps) => {
   return (

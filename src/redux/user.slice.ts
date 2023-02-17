@@ -1,7 +1,8 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {TestPerson} from './dummy-data';
+import {IUserSlice} from './types';
 
-// const initialState = {
+// const initialState: IUserSlice = {
 //   _id: '',
 //   name: '',
 //   phone: '',

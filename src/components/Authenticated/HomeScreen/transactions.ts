@@ -1,4 +1,4 @@
-import {ITransaction} from './Types';
+import {ITransaction} from '../../../models/Transaction';
 
 export const transactions: Array<ITransaction> = [
   {

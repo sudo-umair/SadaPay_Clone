@@ -2,9 +2,9 @@ import {StyleSheet, Text, View, Image, Pressable} from 'react-native';
 import React from 'react';
 import Feather_Icon from 'react-native-vector-icons/Feather';
 import {useNavigation} from '@react-navigation/native';
-import {HomeScreenProps} from '../../navigation/Types';
+import {HomeScreenProps} from '../../../navigation/Types';
 import {useSelector} from 'react-redux';
-import {RootState} from '../../redux/store';
+import {RootState} from '../../../redux/store';
 
 type HomeScreenNavigationProp = HomeScreenProps['navigation'];
 // type HomeScreenRouteProp = HomeScreenProps['route'];

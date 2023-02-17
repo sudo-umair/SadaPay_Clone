@@ -20,9 +20,3 @@ export interface ButtonsContainerProps {
   onSendPress: () => void;
   amount: number;
 }
-
-export interface ButtonProps {
-  onPress: () => void;
-  title: string;
-  disabled?: boolean;
-}

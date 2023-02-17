@@ -5,7 +5,7 @@ import {useSelector} from 'react-redux';
 import {RootState} from '../../redux/store';
 import Clipboard from '@react-native-clipboard/clipboard';
 import {useToast} from 'react-native-toast-notifications';
-import Card from '../../components/LoadMoneyScreen/Card';
+import Card from '../../components/Authenticated/LoadMoneyScreen/Card';
 
 const LoadMoneyScreen = ({navigation}: LoadMoneyScreenProps) => {
   const user = useSelector((state: RootState) => state.user);

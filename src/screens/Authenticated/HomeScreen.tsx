@@ -1,8 +1,8 @@
 import {ScrollView, StyleSheet} from 'react-native';
 import React from 'react';
-import TopContainer from '../../components/HomeScreen/TopContainer';
 import {type HomeScreenProps} from '../../navigation/Types';
-import TransactionsList from '../../components/HomeScreen/TransactionsList';
+import TopContainer from '../../components/Authenticated/HomeScreen/TopContainer';
+import TransactionsList from '../../components/Authenticated/HomeScreen/TransactionsList';
 
 const HomeScreen = ({}: HomeScreenProps) => {
   return (

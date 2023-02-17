@@ -1,7 +1,7 @@
 import {StyleSheet, View} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {type ButtonsContainerProps} from './Types';
-import Button from './Button';
+import Button from '../../UI/Button';
 import {checkAmountForDisable} from './services';
 
 const ButtonsContainer = ({
@@ -17,8 +17,18 @@ const ButtonsContainer = ({
 
   return (
     <View style={styles.buttonsContainer}>
-      <Button disabled={disabled} title="Request" onPress={onRequestPress} />
-      <Button disabled={disabled} title="Send" onPress={onSendPress} />
+      <Button
+        style={styles.button}
+        disabled={disabled}
+        title="Request"
+        onPress={onRequestPress}
+      />
+      <Button
+        style={styles.button}
+        disabled={disabled}
+        title="Send"
+        onPress={onSendPress}
+      />
     </View>
   );
 };
@@ -30,8 +40,11 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-between',
     width: '100%',
     marginBottom: -5,
+  },
+  button: {
+    width: '45%',
   },
 });

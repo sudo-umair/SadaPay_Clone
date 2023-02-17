@@ -1,6 +1,6 @@
 import {StyleSheet, View, Pressable, Text} from 'react-native';
 import React from 'react';
-import {KEYS} from '../../utils/constants';
+import {KEYS} from '../../../utils/constants';
 import Icon from 'react-native-vector-icons/Entypo';
 import {type KeyPadProps} from './Types';
 

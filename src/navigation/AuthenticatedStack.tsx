@@ -5,6 +5,7 @@ import {AuthenticatedStackParamList} from './Types';
 import HomeScreen from '../screens/Authenticated/HomeScreen';
 import LoadMoneyScreen from '../screens/Authenticated/LoadMoneyScreen';
 import SendAndRequestScreen from '../screens/Authenticated/SendAndRequestScreen';
+import TransactionDetailsScreen from '../screens/Authenticated/TransactionDetailsScreen';
 
 const Stack = createNativeStackNavigator<AuthenticatedStackParamList>();
 
@@ -19,6 +20,10 @@ const AuthenticatedStack = () => {
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="LoadMoney" component={LoadMoneyScreen} />
       <Stack.Screen name="SendAndRequest" component={SendAndRequestScreen} />
+      <Stack.Screen
+        name="TransactionDetails"
+        component={TransactionDetailsScreen}
+      />
     </Stack.Navigator>
   );
 };

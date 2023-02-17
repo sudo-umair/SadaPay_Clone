@@ -1,7 +1,14 @@
-import {StyleSheet, FlatList, Text, ScrollView, View} from 'react-native';
+import {
+  StyleSheet,
+  FlatList,
+  Text,
+  ScrollView,
+  View,
+  Pressable,
+} from 'react-native';
 import React from 'react';
 import {transactions} from './transactions';
-import {type ITransaction} from './Types';
+import {type ITransaction} from '../../../models/Transaction';
 import {
   dateFormatter,
   timeFormatter,
@@ -10,10 +17,23 @@ import {
   iconFormatter,
 } from './services';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {useNavigation} from '@react-navigation/native';
+import {HomeScreenProps} from '../../../navigation/Types';
+
+type HomeScreenNavigationProp = HomeScreenProps['navigation'];
+// type HomeScreenRouteProp = HomeScreenProps['route'];
 
 const RenderItem = ({item, index}: {item: ITransaction; index: number}) => {
+  const navigation = useNavigation<HomeScreenNavigationProp>();
+
+  const goToTransactionDetails = () => {
+    navigation.navigate('TransactionDetails', {transaction: item});
+  };
+
   return (
-    <View style={styles.renderItemContainer}>
+    <Pressable
+      onPress={goToTransactionDetails}
+      style={styles.renderItemContainer}>
       <View style={styles.top_row}>
         <Text style={[index === 0 ? styles.first_date : styles.date]}>
           {dateFormatter(item.date)}
@@ -35,7 +55,7 @@ const RenderItem = ({item, index}: {item: ITransaction; index: number}) => {
           {transactionFormatter(item.type, item.amount)}
         </Text>
       </View>
-    </View>
+    </Pressable>
   );
 };
 
