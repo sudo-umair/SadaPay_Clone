@@ -7,12 +7,13 @@ import {RootState} from '../../redux/store';
 import InputAmount from '../../components/Authenticated/SendAndRequestScreen/InputAmount';
 import KeyPad from '../../components/Authenticated/SendAndRequestScreen/KeyPad';
 import ButtonsContainer from '../../components/Authenticated/SendAndRequestScreen/ButtonsContainer';
+import {currencyFormatter} from '../../utils/helpers';
 
 const CustomHeaderText = ({balance}: CustomHeaderTextProps) => {
   return (
     <Text style={styles.headerText}>
       Current Balance:{'\n'}
-      <Text style={styles.balance}>Rs. {balance}</Text>
+      <Text style={styles.balance}>{currencyFormatter(Number(balance))}</Text>
     </Text>
   );
 };

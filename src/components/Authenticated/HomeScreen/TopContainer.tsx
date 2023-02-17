@@ -5,6 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 import {HomeScreenProps} from '../../../navigation/Types';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../redux/store';
+import {currencyFormatter} from '../../../utils/helpers';
 
 type HomeScreenNavigationProp = HomeScreenProps['navigation'];
 // type HomeScreenRouteProp = HomeScreenProps['route'];
@@ -31,11 +32,13 @@ const TopContainer = () => {
         style={styles.leftColumn}>
         <View style={styles.left_top}>
           <Text style={styles.text}>Current Balance</Text>
-          <Text style={styles.balance_amount}>Rs. {user.balance}</Text>
+          <Text style={styles.balance_amount}>
+            {currencyFormatter(user.balance)}
+          </Text>
         </View>
         <View style={styles.left_bottom}>
           <Image
-            source={require('../../assets/images/mastercard.png')}
+            source={require('../../../assets/images/mastercard.png')}
             style={styles.mastercard}
             resizeMode="contain"
           />

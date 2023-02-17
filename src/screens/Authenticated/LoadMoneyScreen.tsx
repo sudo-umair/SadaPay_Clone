@@ -6,6 +6,7 @@ import {RootState} from '../../redux/store';
 import Clipboard from '@react-native-clipboard/clipboard';
 import {useToast} from 'react-native-toast-notifications';
 import Card from '../../components/Authenticated/LoadMoneyScreen/Card';
+import {currencyFormatter} from '../../utils/helpers';
 
 const LoadMoneyScreen = ({navigation}: LoadMoneyScreenProps) => {
   const user = useSelector((state: RootState) => state.user);
@@ -35,7 +36,9 @@ const LoadMoneyScreen = ({navigation}: LoadMoneyScreenProps) => {
     <View style={styles.rootContainer}>
       <Text style={styles.title}>Load money</Text>
       <Text style={styles.subtitle}>
-        <Text style={styles.amount}>Rs. {user.monthlyLimit} </Text>
+        <Text style={styles.amount}>
+          {currencyFormatter(user.monthlyLimit)}{' '}
+        </Text>
         incoming limit left this month!
       </Text>
       <Card onPress={copyAccountNumber} account={user.phone} />
