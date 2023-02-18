@@ -10,7 +10,7 @@ const AppNavigator = () => {
 
   return (
     <NavigationContainer>
-      {appState.isAuthenticated ? (
+      {!appState.isAuthenticated ? (
         <UnAuthenticatedStack />
       ) : (
         <AuthenticatedStack />
