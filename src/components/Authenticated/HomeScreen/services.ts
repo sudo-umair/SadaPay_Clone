@@ -1,4 +1,5 @@
 import {IMonths} from './Types';
+import {currencyFormatter} from '../../../utils/helpers';
 
 export const MONTHS: IMonths = {
   0: 'Jan',
@@ -38,18 +39,20 @@ export const timeFormatter = (dateString: string) => {
 };
 
 export const transactionFormatter = (
-  type: 'incoming' | 'outgoing',
+  from: string,
+  phone: string,
   amount: number,
 ) => {
-  return `${type === 'incoming' ? '+' : '-'} Rs. ${amount}`;
+  const type = from === phone ? '-' : '+';
+  return `${type} ${currencyFormatter(amount)} `;
 };
 
-export const iconFormatter = (type: 'incoming' | 'outgoing') => {
-  return type === 'incoming'
+export const iconFormatter = (from: string, phone: string) => {
+  return from === phone
     ? 'arrow-bottom-left-bold-outline'
     : 'arrow-top-right-bold-outline';
 };
 
-export const iconColorFormatter = (type: 'incoming' | 'outgoing') => {
-  return type === 'incoming' ? '#27AE60' : '#EB5757';
+export const iconColorFormatter = (from: string, phone: string) => {
+  return from === phone ? '#27AE60' : '#EB5757';
 };
