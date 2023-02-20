@@ -47,6 +47,10 @@ export const transactionFormatter = (
   return `${type} ${currencyFormatter(amount)} `;
 };
 
+export const transactionType = (from: string, phone: string) => {
+  return from === phone;
+};
+
 export const iconFormatter = (from: string, phone: string) => {
   return from === phone
     ? 'arrow-bottom-left-bold-outline'

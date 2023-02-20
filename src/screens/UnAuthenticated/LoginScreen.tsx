@@ -16,7 +16,7 @@ const LoginScreen = ({navigation}: LoginScreenProps) => {
   }, [navigation]);
 
   useEffect(() => {
-    if (phone.length === 12) {
+    if (phone.length === 12 && phone.startsWith('92')) {
       setDisabled(false);
     } else {
       setDisabled(true);
