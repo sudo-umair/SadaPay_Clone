@@ -18,11 +18,7 @@ const TransactionDetailsScreen = ({
     navigation.setOptions({
       title: transaction.title,
       headerShown: true,
-      headerStyle: {
-        backgroundColor: '#01d3b0',
-      },
       headerShadowVisible: false,
-      statusBarColor: '#01d3b0',
       headerTitleAlign: 'center',
       headerTintColor: '#fff',
     });
@@ -30,7 +26,7 @@ const TransactionDetailsScreen = ({
 
   return (
     <View style={styles.rootContainer}>
-      <TopContainer transaction={transaction} />
+      <TopContainer user={user} transaction={transaction} />
       <Card transaction={transaction} />
     </View>
   );
@@ -42,7 +38,5 @@ const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
     backgroundColor: '#ffffff',
-    // justifyContent: 'center',
-    // alignItems: 'center',
   },
 });

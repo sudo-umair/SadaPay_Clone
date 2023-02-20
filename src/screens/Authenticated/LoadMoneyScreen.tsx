@@ -10,9 +10,7 @@ import {currencyFormatter} from '../../utils/helpers';
 
 const LoadMoneyScreen = ({navigation}: LoadMoneyScreenProps) => {
   const user = useSelector((state: RootState) => state.user);
-
   const toast = useToast();
-  console.log(user);
 
   const copyAccountNumber = () => {
     Clipboard.setString(user.phone);
