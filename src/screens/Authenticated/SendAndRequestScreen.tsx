@@ -5,7 +5,7 @@ import {type CustomHeaderTextProps} from '../../components/Authenticated/SendAnd
 import {useSelector} from 'react-redux';
 import {RootState} from '../../redux/store';
 import InputAmount from '../../components/Authenticated/SendAndRequestScreen/InputAmount';
-import KeyPad from '../../components/Authenticated/SendAndRequestScreen/KeyPad';
+import KeyPad from '../../components/UI/KeyPad';
 import ButtonsContainer from '../../components/Authenticated/SendAndRequestScreen/ButtonsContainer';
 import {currencyFormatter} from '../../utils/helpers';
 

@@ -1,12 +1,12 @@
 import {StyleSheet, View, Pressable, Text} from 'react-native';
 import React from 'react';
-import {KEYS} from '../../../utils/constants';
+import {KEYS} from '../../utils/constants';
 import Icon from 'react-native-vector-icons/Entypo';
 import {type KeyPadProps} from './Types';
 
-const KeyPad = ({onPress}: KeyPadProps) => {
+const KeyPad = ({onPress, style}: KeyPadProps) => {
   return (
-    <View style={styles.keysContainer}>
+    <View style={[styles.keysContainer, style ?? {}]}>
       {KEYS.map(text => {
         return (
           <Pressable
@@ -32,7 +32,7 @@ export default KeyPad;
 
 const styles = StyleSheet.create({
   keysContainer: {
-    flex: 6,
+    marginTop: 20,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',

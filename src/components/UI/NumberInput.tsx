@@ -14,6 +14,7 @@ const NumberInput = ({
   style,
   keyboardType,
   maxLength,
+  secureTextEntry,
 }: NumberInputProps) => {
   const [focused, setFocused] = React.useState(false);
 
@@ -41,7 +42,7 @@ const NumberInput = ({
         style={[
           styles.numberInput,
           focused && styles.numberInputFocused,
-          style ?? {},
+          style ?? ({} as any),
         ]}
         value={value ?? ''}
         onChangeText={text => onChangeText(text, index)}
@@ -57,6 +58,7 @@ const NumberInput = ({
         onBlur={onBlur}
         onSubmitEditing={onSubmitEditing ?? (() => {})}
         caretHidden={true}
+        secureTextEntry={secureTextEntry ?? false}
       />
     </View>
   );

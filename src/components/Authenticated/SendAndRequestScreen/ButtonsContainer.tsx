@@ -37,7 +37,8 @@ export default ButtonsContainer;
 
 const styles = StyleSheet.create({
   buttonsContainer: {
-    flex: 1,
+    position: 'absolute',
+    bottom: '5%',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',

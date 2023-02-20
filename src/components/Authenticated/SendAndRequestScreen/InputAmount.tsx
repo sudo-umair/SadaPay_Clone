@@ -21,12 +21,12 @@ export default InputAmount;
 
 const styles = StyleSheet.create({
   inputContainer: {
-    flex: 2,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     padding: 15,
     width: '100%',
+    marginTop: 20,
   },
   inputLabel: {
     fontSize: 50,

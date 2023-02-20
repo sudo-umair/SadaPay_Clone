@@ -19,7 +19,13 @@ export interface NumberInputProps {
   onChangeText: (text: string, index: number) => void;
   onSubmitEditing?: () => void;
   autoFocus?: boolean;
-  style?: StyleProp<ViewStyle>;
+  style?: StyleProp<TextInputProps['style']>;
   keyboardType?: TextInputProps['keyboardType'];
   maxLength?: number;
+  secureTextEntry?: boolean;
+}
+
+export interface KeyPadProps {
+  onPress: (text: string) => void;
+  style?: StyleProp<ViewStyle>;
 }

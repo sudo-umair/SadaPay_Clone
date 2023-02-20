@@ -6,6 +6,7 @@ import {ITransaction} from '../models/Transaction';
 export type UnAuthenticatedStackParamList = {
   Login: undefined;
   Verification: {phone: string};
+  Authentication: {phone?: string};
 };
 
 export type LoginScreenProps = NativeStackScreenProps<
@@ -16,6 +17,11 @@ export type LoginScreenProps = NativeStackScreenProps<
 export type VerificationScreenProps = NativeStackScreenProps<
   UnAuthenticatedStackParamList,
   'Verification'
+>;
+
+export type AuthenticationScreenProps = NativeStackScreenProps<
+  UnAuthenticatedStackParamList,
+  'Authentication'
 >;
 
 // Authenticated Stack

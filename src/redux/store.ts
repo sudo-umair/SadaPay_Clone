@@ -7,7 +7,7 @@ import appSlice from './app.slice';
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['user'],
+  whitelist: ['user', 'app'],
 };
 
 const reducers = combineReducers({
