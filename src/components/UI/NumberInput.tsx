@@ -36,7 +36,7 @@ const NumberInput = ({
   };
 
   return (
-    <View style={{flex: 1, aspectRatio: 1}}>
+    <View style={styles.container}>
       <TextInput
         ref={innerRef}
         style={[
@@ -67,19 +67,21 @@ const NumberInput = ({
 export default NumberInput;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    aspectRatio: 1,
+  },
   numberInput: {
     flex: 1,
-    padding: 10,
-    margin: 10,
+    padding: '10%',
+    margin: '10%',
     textAlign: 'center',
     fontSize: 40,
     color: '#ffffff',
-    aspectRatio: 1,
     borderBottomColor: '#f6c8c4',
     borderBottomWidth: 2,
   },
   numberInputFocused: {
-    // borderBottomColor: '#000000',
     borderBottomWidth: 5,
   },
 });

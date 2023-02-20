@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     borderWidth: 3,
     borderColor: '#ff7b66',
+    color: '#000',
   },
   inputEditing: {
     borderColor: '#3dbe9e',

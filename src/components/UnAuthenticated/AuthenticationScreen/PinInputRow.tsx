@@ -104,6 +104,6 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   input: {
-    fontSize: 30,
+    fontSize: 25,
   },
 });
