@@ -8,19 +8,22 @@ const Button = ({
   disabled,
   style,
   textStyle,
+  buttonStyle,
   children,
   isIcon,
+  android_ripple,
 }: ButtonProps) => {
   return (
     <View style={[styles.buttonContainer, style]}>
       <Pressable
         onPress={onPress}
         disabled={disabled}
-        android_ripple={{color: '#4e4e4e', borderless: false}}
+        android_ripple={android_ripple ?? {color: '#ffffff', borderless: false}}
         style={[
           styles.button,
           disabled && styles.disabledButton,
           isIcon && styles.buttonWithIcon,
+          buttonStyle,
         ]}>
         <Text style={[styles.buttonText, textStyle]}>{title}</Text>
         {children && children}

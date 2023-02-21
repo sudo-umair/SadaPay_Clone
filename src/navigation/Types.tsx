@@ -30,7 +30,13 @@ export type AuthenticatedStackParamList = {
   Home: undefined;
   LoadMoney: undefined;
   SendAndRequest: undefined;
-  TransactionDetails: {transaction: ITransaction};
+  TransactionDetails: {
+    transaction: ITransaction;
+  };
+  CreateTransaction: {
+    amount: number;
+    mode: 'transfer' | 'request';
+  };
 };
 
 export type HomeScreenProps = NativeStackScreenProps<
@@ -51,4 +57,9 @@ export type SendAndRequestScreenProps = NativeStackScreenProps<
 export type TransactionDetailsScreenProps = NativeStackScreenProps<
   AuthenticatedStackParamList,
   'TransactionDetails'
+>;
+
+export type CreateTransactionScreenProps = NativeStackScreenProps<
+  AuthenticatedStackParamList,
+  'CreateTransaction'
 >;

@@ -1,10 +1,18 @@
-import {TextInputProps, StyleProp, TextInput, ViewStyle} from 'react-native';
+import {
+  TextInputProps,
+  StyleProp,
+  TextInput,
+  ViewStyle,
+  PressableAndroidRippleConfig,
+} from 'react-native';
 
 export interface ButtonProps {
   onPress: () => void;
+  android_ripple?: PressableAndroidRippleConfig;
   title: string;
   disabled?: boolean;
   style?: StyleProp<ViewStyle>;
+  buttonStyle?: StyleProp<ViewStyle>;
   textStyle?: object;
   children?: React.ReactNode;
   isIcon?: boolean;

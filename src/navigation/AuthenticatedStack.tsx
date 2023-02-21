@@ -6,6 +6,7 @@ import HomeScreen from '../screens/Authenticated/HomeScreen';
 import LoadMoneyScreen from '../screens/Authenticated/LoadMoneyScreen';
 import SendAndRequestScreen from '../screens/Authenticated/SendAndRequestScreen';
 import TransactionDetailsScreen from '../screens/Authenticated/TransactionDetailsScreen';
+import CreateTransactionScreen from '../screens/Authenticated/CreateTransactionScreen';
 
 const Stack = createNativeStackNavigator<AuthenticatedStackParamList>();
 
@@ -23,6 +24,10 @@ const AuthenticatedStack = () => {
       <Stack.Screen
         name="TransactionDetails"
         component={TransactionDetailsScreen}
+      />
+      <Stack.Screen
+        name="CreateTransaction"
+        component={CreateTransactionScreen}
       />
     </Stack.Navigator>
   );

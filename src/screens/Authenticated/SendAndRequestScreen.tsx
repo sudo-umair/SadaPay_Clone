@@ -60,6 +60,10 @@ const SendAndRequestScreen = ({navigation}: SendAndRequestScreenProps) => {
         setShowInfo(false);
       }, 1000);
     } else {
+      navigation.navigate('CreateTransaction', {
+        amount,
+        mode: 'transfer',
+      });
     }
   };
 
