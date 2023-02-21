@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, Image, Pressable} from 'react-native';
+import {StyleSheet, Text, View, Image, Pressable, Alert} from 'react-native';
 import React from 'react';
 import Feather_Icon from 'react-native-vector-icons/Feather';
 import {useNavigation} from '@react-navigation/native';
@@ -6,6 +6,9 @@ import {HomeScreenProps} from '../../../navigation/Types';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../redux/store';
 import {currencyFormatter} from '../../../utils/helpers';
+import {useDispatch} from 'react-redux';
+import {setIsAuthenticated} from '../../../redux/app.slice';
+import {type AppDispatch} from '../../../redux/store';
 
 type HomeScreenNavigationProp = HomeScreenProps['navigation'];
 // type HomeScreenRouteProp = HomeScreenProps['route'];
@@ -13,6 +16,7 @@ type HomeScreenNavigationProp = HomeScreenProps['navigation'];
 const TopContainer = () => {
   const navigation = useNavigation<HomeScreenNavigationProp>();
   const user = useSelector((state: RootState) => state.user);
+  const dispatch = useDispatch<AppDispatch>();
 
   const goToLoadMoney = () => {
     navigation.navigate('LoadMoney');
@@ -22,12 +26,25 @@ const TopContainer = () => {
     navigation.navigate('SendAndRequest');
   };
 
+  const logoutHandler = () => {
+    Alert.alert('Logout', 'Are you sure you want to logout?', [
+      {
+        text: 'Cancel',
+        style: 'cancel',
+      },
+      {
+        text: 'Logout',
+        onPress: () => {
+          dispatch(setIsAuthenticated(false));
+        },
+      },
+    ]);
+  };
+
   return (
     <View style={styles.container}>
       <Pressable
-        onPress={() => {
-          console.log('Pressed');
-        }}
+        onPress={logoutHandler}
         android_ripple={{color: 'white', borderless: false}}
         style={styles.leftColumn}>
         <View style={styles.left_top}>

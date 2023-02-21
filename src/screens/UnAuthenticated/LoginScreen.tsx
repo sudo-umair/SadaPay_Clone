@@ -3,10 +3,12 @@ import React, {useState, useLayoutEffect, useEffect} from 'react';
 import {type LoginScreenProps} from '../../navigation/Types';
 import Button from '../../components/UI/Button';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import PhoneInput from '../../components/UnAuthenticated/LoginScreen/PhoneInput';
+import Input from '../../components/UI/Input';
 
 const LoginScreen = ({navigation}: LoginScreenProps) => {
   const [phone, setPhone] = useState('');
+  const [name, setName] = useState('');
+
   const [disabled, setDisabled] = useState(true);
 
   useLayoutEffect(() => {
@@ -16,26 +18,45 @@ const LoginScreen = ({navigation}: LoginScreenProps) => {
   }, [navigation]);
 
   useEffect(() => {
-    if (phone.length === 12 && phone.startsWith('92')) {
+    if (phone.length === 12 && phone.startsWith('92') && name.length > 0) {
       setDisabled(false);
     } else {
       setDisabled(true);
     }
-  }, [phone]);
+  }, [phone, name]);
+
+  const onContinue = () => {
+    navigation.navigate('Verification', {phone});
+  };
 
   return (
     <View style={styles.rootContainer}>
       <View style={styles.container}>
         <Text style={styles.title}>Let's get Started</Text>
         <Text style={styles.subtitle}>Please enter your mobile number</Text>
-        <PhoneInput phone={phone} setPhone={setPhone} />
+        <Input
+          value={phone}
+          onChangeText={text => setPhone(text)}
+          autoFocus={true}
+          keyboardType="phone-pad"
+          maxLength={12}
+          placeholder="923365554477"
+        />
+        <Text style={styles.subtitle}>Please enter your name</Text>
+        <Input
+          value={name}
+          onChangeText={text => setName(text)}
+          keyboardType="default"
+          maxLength={20}
+          placeholder="Muhammad Umair"
+        />
       </View>
       <KeyboardAvoidingView behavior="height">
         <Button
           isIcon={true}
           title="Continue"
           disabled={disabled}
-          onPress={() => navigation.navigate('Verification', {phone})}>
+          onPress={onContinue}>
           <Icon name="navigate-next" size={24} color="#fff" />
         </Button>
       </KeyboardAvoidingView>
@@ -64,6 +85,13 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 18,
     color: '#fffffc',
+    marginTop: 30,
+  },
+  error: {
     marginTop: 15,
+    color: '#ffffff',
+    width: '100%',
+    textAlign: 'center',
+    fontSize: 16,
   },
 });

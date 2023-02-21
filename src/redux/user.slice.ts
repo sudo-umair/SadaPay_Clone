@@ -1,20 +1,19 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {TestPerson} from './dummy-data';
-import {IUserSlice} from './types';
+import {IUser} from '../models/User';
 
-// const initialState: IUserSlice = {
-//   _id: '',
-//   name: '',
-//   phone: '',
-//   pin: '',
-//   token: '',
-//   balance: 0,
-//   monthlyLimit: 0,
-// };
+const initialState: IUser = {
+  _id: '0200202',
+  name: 'Muhammad Umair',
+  phone: '923211234567',
+  pin: '0000',
+  token: 'aj2ij3nq2nijqje2',
+  balance: 10000,
+  monthlyLimit: 100000,
+};
 
 export const userSlice = createSlice({
   name: 'user',
-  initialState: TestPerson,
+  initialState: initialState,
   reducers: {
     setUser: (state, action) => {
       state.name = action.payload.name;

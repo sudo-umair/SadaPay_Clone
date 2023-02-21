@@ -7,12 +7,14 @@ const InputAmount = ({amount, info, showInfo}: InputAmountProps) => {
   return (
     <View style={styles.inputContainer}>
       <Text style={styles.inputLabel}>Rs. {amount}</Text>
-      {showInfo && (
-        <View style={styles.infoContainer}>
-          <Icon name="info" size={20} color="#ffffff" />
-          <Text style={styles.inputInfo}>{info}</Text>
-        </View>
-      )}
+      <View style={styles.infoContainer}>
+        {showInfo && (
+          <>
+            <Icon name="info" size={20} color="#ffffff" />
+            <Text style={styles.inputInfo}>{info}</Text>
+          </>
+        )}
+      </View>
     </View>
   );
 };
@@ -38,7 +40,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 20,
+    marginTop: 10,
+    height: 20,
   },
   inputInfo: {
     color: '#ffffff',
