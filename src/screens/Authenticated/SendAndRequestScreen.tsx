@@ -8,6 +8,7 @@ import InputAmount from '../../components/Authenticated/SendAndRequestScreen/Inp
 import KeyPad from '../../components/UI/KeyPad';
 import ButtonsContainer from '../../components/Authenticated/SendAndRequestScreen/ButtonsContainer';
 import {currencyFormatter} from '../../utils/helpers';
+import {useToast} from 'react-native-toast-notifications';
 
 const CustomHeaderText = ({balance}: CustomHeaderTextProps) => {
   return (
@@ -20,6 +21,7 @@ const CustomHeaderText = ({balance}: CustomHeaderTextProps) => {
 
 const SendAndRequestScreen = ({navigation}: SendAndRequestScreenProps) => {
   const user = useSelector((state: RootState) => state.user);
+  const toast = useToast();
 
   const [amount, setAmount] = useState(0);
   const [maxSendAmount] = useState(user.balance);
@@ -61,7 +63,11 @@ const SendAndRequestScreen = ({navigation}: SendAndRequestScreenProps) => {
     }
   };
 
-  const handleRequestPayment = () => {};
+  const handleRequestPayment = () => {
+    toast.show('Feature Not Yet Available', {
+      placement: 'top',
+    });
+  };
 
   useLayoutEffect(() => {
     navigation.setOptions({

@@ -39,7 +39,7 @@ const AuthenticationScreen = ({navigation}: AuthenticationScreenProps) => {
       <Pressable
         onPress={onResetPress}
         style={({pressed}) => [styles.container, pressed && styles.pressed]}>
-        <Text style={styles.link}>Reset</Text>
+        <Text style={styles.link}>RESET</Text>
       </Pressable>
     </View>
   );
@@ -75,9 +75,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   link: {
+    marginTop: 20,
     color: '#ffffff',
-    fontSize: 16,
+    fontSize: 20,
     textDecorationLine: 'underline',
+    fontWeight: 'bold',
+    letterSpacing: 1,
   },
   pressed: {
     opacity: 0.5,
