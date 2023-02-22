@@ -10,7 +10,7 @@ import AuthenticationScreen from '../screens/UnAuthenticated/AuthenticationScree
 
 const Stack = createNativeStackNavigator<UnAuthenticatedStackParamList>();
 
-const AuthenticatedStack = () => {
+const UnAuthenticatedStack = () => {
   const appState = useSelector((state: RootState) => state.app);
 
   return (
@@ -18,8 +18,7 @@ const AuthenticatedStack = () => {
       screenOptions={{
         headerShown: false,
         animation: 'slide_from_right',
-      }}
-      initialRouteName="Login">
+      }}>
       {!appState.isLoggedIn ? (
         <>
           <Stack.Screen name="Login" component={LoginScreen} />
@@ -32,4 +31,4 @@ const AuthenticatedStack = () => {
   );
 };
 
-export default AuthenticatedStack;
+export default UnAuthenticatedStack;

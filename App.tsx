@@ -20,7 +20,7 @@ function App(): JSX.Element {
           </ToastProvider>
         </PersistGate>
       </Provider>
-      <StatusBar barStyle={'dark-content'} backgroundColor={'#F2F6F7'} />
+      <StatusBar barStyle={'dark-content'} backgroundColor={'#000000'} />
     </SafeAreaView>
   );
 }

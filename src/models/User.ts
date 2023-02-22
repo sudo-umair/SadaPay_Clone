@@ -7,4 +7,5 @@ export interface IUser {
   balance: number;
   monthlyLimit: number;
   token: string;
+  type: 'login' | 'sign-up';
 }

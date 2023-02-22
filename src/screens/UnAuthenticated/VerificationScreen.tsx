@@ -11,7 +11,8 @@ import {phoneNumberFormatter} from '../../utils/helpers';
 import InputRow from '../../components/UnAuthenticated/VerificationScreen/InputRow';
 
 const VerificationScreen = ({navigation, route}: VerificationScreenProps) => {
-  const {phone} = route.params;
+  const {phone, name, type} = route.params;
+  console.log(route.params);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -33,7 +34,8 @@ const VerificationScreen = ({navigation, route}: VerificationScreenProps) => {
         <Text style={styles.subtitle}>
           We've sent it to {phoneNumberFormatter(phone)}
         </Text>
-        <InputRow />
+        <InputRow name={name} phone={phone} type={type} />
+        <Text style={styles.info}>Enter 0000 as Verification Code</Text>
       </View>
       <KeyboardAvoidingView behavior="height">
         <Pressable style={({pressed}) => [pressed && styles.button]}>
@@ -66,7 +68,12 @@ const styles = StyleSheet.create({
     color: '#fffffc',
     marginTop: 15,
   },
-
+  info: {
+    fontSize: 14,
+    color: '#fffffc',
+    marginTop: 15,
+    textAlign: 'center',
+  },
   button: {
     opacity: 0.5,
   },

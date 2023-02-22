@@ -3,13 +3,20 @@ import React, {useLayoutEffect} from 'react';
 import {type AuthenticationScreenProps} from '../../navigation/Types';
 import {useSelector, useDispatch} from 'react-redux';
 import {RootState, AppDispatch} from '../../redux/store';
-import {setIsAuthenticated, setIsLoggedIn} from '../../redux/app.slice';
-
+import {
+  setIsAuthenticated,
+  setIsLoggedIn,
+  setIsLoading,
+} from '../../redux/app.slice';
+import {setUser} from '../../redux/user.slice';
 import PinInputRow from '../../components/UnAuthenticated/AuthenticationScreen/PinInputRow';
+import axiosClient from '../../api/axios';
+import {useToast} from 'react-native-toast-notifications';
 
 const AuthenticationScreen = ({navigation}: AuthenticationScreenProps) => {
   const user = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch<AppDispatch>();
+  const toast = useToast();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -20,6 +27,67 @@ const AuthenticationScreen = ({navigation}: AuthenticationScreenProps) => {
   const onResetPress = () => {
     dispatch(setIsAuthenticated(false));
     dispatch(setIsLoggedIn(false));
+  };
+
+  const loginHandler = async (input: string) => {
+    dispatch(setIsLoading(true));
+    await axiosClient
+      .post('/user/get', {
+        phone: user.phone,
+        pin: input,
+      })
+      .then(res => {
+        console.log(res.data);
+        if (res.status === 200) {
+          dispatch(setIsAuthenticated(true));
+          dispatch(setIsLoggedIn(true));
+          dispatch(setUser(res.data.user));
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        toast.show('Invalid PIN', {
+          type: 'danger',
+          placement: 'top',
+          duration: 3000,
+        });
+      });
+    dispatch(setIsLoading(false));
+    console.log('login');
+  };
+
+  const signupHandler = async (input: string) => {
+    dispatch(setIsLoading(true));
+    await axiosClient
+      .post('/user/create', {
+        name: user.name,
+        phone: user.phone,
+        pin: input,
+      })
+      .then(res => {
+        console.log(res.data);
+        dispatch(setIsAuthenticated(true));
+        dispatch(setIsLoggedIn(true));
+        dispatch(setUser(res.data.user));
+      })
+      .catch(err => {
+        console.log(err);
+        toast.show('Invalid PIN', {
+          type: 'danger',
+          placement: 'top',
+          duration: 3000,
+        });
+      });
+    dispatch(setIsLoading(false));
+    console.log('signup');
+  };
+
+  const onSubmitEditing = async (input: string) => {
+    if (user.type === 'login') {
+      loginHandler(input);
+    } else if (user.type === 'sign-up') {
+      signupHandler(input);
+    }
   };
 
   return (
@@ -35,7 +103,7 @@ const AuthenticationScreen = ({navigation}: AuthenticationScreenProps) => {
           PAY
         </Text>
       </View>
-      <PinInputRow />
+      <PinInputRow onSubmit={onSubmitEditing} />
       <Pressable
         onPress={onResetPress}
         style={({pressed}) => [styles.container, pressed && styles.pressed]}>

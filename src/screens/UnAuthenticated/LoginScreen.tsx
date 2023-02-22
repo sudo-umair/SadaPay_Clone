@@ -1,14 +1,22 @@
-import {StyleSheet, Text, View, KeyboardAvoidingView} from 'react-native';
-import React, {useState, useLayoutEffect, useEffect} from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  KeyboardAvoidingView,
+  TextInput,
+} from 'react-native';
+import React, {useState, useLayoutEffect, useEffect, useRef} from 'react';
 import {type LoginScreenProps} from '../../navigation/Types';
 import Button from '../../components/UI/Button';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Input from '../../components/UI/Input';
+import axiosClient from '../../api/axios';
 
 const LoginScreen = ({navigation}: LoginScreenProps) => {
   const [phone, setPhone] = useState('');
   const [name, setName] = useState('');
 
+  const input2Ref = useRef() as React.MutableRefObject<TextInput>;
   const [disabled, setDisabled] = useState(true);
 
   useLayoutEffect(() => {
@@ -25,8 +33,22 @@ const LoginScreen = ({navigation}: LoginScreenProps) => {
     }
   }, [phone, name]);
 
-  const onContinue = () => {
-    navigation.navigate('Verification', {phone});
+  const onContinue = async () => {
+    await axiosClient
+      .post('/user/check-user', {
+        searchText: phone,
+      })
+      .then(res => {
+        console.log(res.data);
+        navigation.navigate('Verification', {
+          name,
+          phone,
+          type: res.data.status ? 'login' : 'sign-up',
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   return (
@@ -41,6 +63,7 @@ const LoginScreen = ({navigation}: LoginScreenProps) => {
           keyboardType="phone-pad"
           maxLength={12}
           placeholder="923365554477"
+          onSubmitEditing={() => input2Ref.current.focus()}
         />
         <Text style={styles.subtitle}>Please enter your name</Text>
         <Input
@@ -49,6 +72,7 @@ const LoginScreen = ({navigation}: LoginScreenProps) => {
           keyboardType="default"
           maxLength={20}
           placeholder="Muhammad Umair"
+          innerRef={input2Ref}
         />
       </View>
       <KeyboardAvoidingView behavior="height">

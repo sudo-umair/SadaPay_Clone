@@ -2,19 +2,28 @@ import {createSlice} from '@reduxjs/toolkit';
 import {IUser} from '../models/User';
 
 const initialState: IUser = {
-  _id: '0200202',
-  name: 'Muhammad Umair',
-  phone: '923211234567',
-  pin: '0000',
-  token: 'aj2ij3nq2nijqje2',
-  balance: 10000,
-  monthlyLimit: 100000,
+  _id: '',
+  name: '',
+  phone: '',
+  pin: '',
+  token: '',
+  balance: 0,
+  monthlyLimit: 0,
+  type: 'sign-up',
 };
 
 export const userSlice = createSlice({
   name: 'user',
   initialState: initialState,
   reducers: {
+    setTempUser: (state, action) => {
+      state.phone = action.payload.phone;
+      state.name = action.payload.name;
+      state.type = action.payload.type;
+    },
+    setType: (state, action) => {
+      state.type = action.payload.type;
+    },
     setUser: (state, action) => {
       state.name = action.payload.name;
       state.phone = action.payload.phone;
@@ -36,6 +45,6 @@ export const userSlice = createSlice({
   },
 });
 
-export const {removeUser, setUser} = userSlice.actions;
+export const {removeUser, setUser, setType, setTempUser} = userSlice.actions;
 
 export default userSlice.reducer;

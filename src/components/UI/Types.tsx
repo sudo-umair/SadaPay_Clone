@@ -23,7 +23,7 @@ export interface NumberInputProps {
   previousRef?: React.RefObject<TextInput>;
   nextRef?: React.RefObject<TextInput>;
   value: string;
-  index: number;
+  index: string;
   onChangeText: (text: string, index: number) => void;
   onSubmitEditing?: () => void;
   autoFocus?: boolean;

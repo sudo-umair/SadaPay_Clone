@@ -5,8 +5,12 @@ import {ITransaction} from '../models/Transaction';
 
 export type UnAuthenticatedStackParamList = {
   Login: undefined;
-  Verification: {phone: string};
-  Authentication: {phone?: string};
+  Verification: {
+    phone: string;
+    name: string;
+    type: 'login' | 'sign-up';
+  };
+  Authentication: undefined;
 };
 
 export type LoginScreenProps = NativeStackScreenProps<

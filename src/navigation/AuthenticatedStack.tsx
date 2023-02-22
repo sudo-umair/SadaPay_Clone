@@ -18,7 +18,13 @@ const AuthenticatedStack = () => {
         animation: 'slide_from_right',
       }}
       initialRouteName="Home">
-      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen
+        name="Home"
+        options={{
+          animation: 'default',
+        }}
+        component={HomeScreen}
+      />
       <Stack.Screen name="LoadMoney" component={LoadMoneyScreen} />
       <Stack.Screen name="SendAndRequest" component={SendAndRequestScreen} />
       <Stack.Screen

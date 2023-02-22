@@ -9,6 +9,7 @@ import {currencyFormatter} from '../../../utils/helpers';
 import {useDispatch} from 'react-redux';
 import {setIsAuthenticated} from '../../../redux/app.slice';
 import {type AppDispatch} from '../../../redux/store';
+import {setType} from '../../../redux/user.slice';
 
 type HomeScreenNavigationProp = HomeScreenProps['navigation'];
 // type HomeScreenRouteProp = HomeScreenProps['route'];
@@ -36,6 +37,7 @@ const TopContainer = () => {
         text: 'Logout',
         onPress: () => {
           dispatch(setIsAuthenticated(false));
+          dispatch(setType({type: 'login'}));
         },
       },
     ]);
