@@ -1,27 +1,73 @@
-import {StyleSheet, FlatList, ScrollView} from 'react-native';
-import React from 'react';
-import {transactions} from './transactions';
+import {
+  StyleSheet,
+  FlatList,
+  ScrollView,
+  ActivityIndicator,
+  View,
+} from 'react-native';
+import React, {useEffect, useState} from 'react';
+// import {transactions} from './transactions';
 import {type ITransaction} from '../../../models/Transaction';
 import TransactionItem from './TransactionItem';
+import ListEmpty from './ListEmpty';
+import axiosClient from '../../../api/axios';
+import {useSelector} from 'react-redux';
+import {type RootState} from '../../../redux/store';
 
 const TransactionsList = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [transactions, setTransactions] = useState<ITransaction[]>([]);
+
+  const user = useSelector((state: RootState) => state.user);
+  const {name, phone, token} = user;
+
+  useEffect(() => {
+    const getTransactions = async () => {
+      setIsLoading(true);
+      try {
+        const response = await axiosClient.post('/transaction/get', {
+          phone,
+          token,
+          name,
+        });
+        setTransactions(response.data.transactions);
+        console.log(response.data.message);
+      } catch (error) {
+        console.log(error);
+      }
+      setIsLoading(false);
+    };
+    getTransactions();
+  }, [phone, token, name]);
+
   return (
-    <ScrollView
-      style={styles.rootContainer}
-      horizontal={true}
-      nestedScrollEnabled={true}>
-      <FlatList
-        data={transactions}
-        renderItem={({item, index}) => (
-          <TransactionItem item={item} index={index} />
-        )}
-        keyExtractor={(item: ITransaction) =>
-          item._id.toString() + Math.random().toString()
-        }
-        nestedScrollEnabled={true}
-        style={styles.transactionsList}
-      />
-    </ScrollView>
+    <View style={styles.container}>
+      {isLoading ? (
+        <View style={styles.container}>
+          <ActivityIndicator size={'large'} color={'red'} />
+        </View>
+      ) : (
+        <>
+          <ScrollView
+            style={styles.rootContainer}
+            horizontal={true}
+            nestedScrollEnabled={true}>
+            <FlatList
+              data={transactions}
+              renderItem={({item, index}) => (
+                <TransactionItem item={item} index={index} />
+              )}
+              keyExtractor={(item: ITransaction) =>
+                item._id.toString() + Math.random().toString()
+              }
+              nestedScrollEnabled={true}
+              style={styles.transactionsList}
+            />
+          </ScrollView>
+          {transactions.length === 0 && <ListEmpty />}
+        </>
+      )}
+    </View>
   );
 };
 
@@ -39,5 +85,11 @@ const styles = StyleSheet.create({
   transactionsList: {
     flex: 1,
     width: '100%',
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
   },
 });
