@@ -5,6 +5,9 @@ import {type CreateTransactionScreenProps} from '../../navigation/Types';
 import Input from '../../components/UI/Input';
 import {useToast} from 'react-native-toast-notifications';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import axiosClient from '../../api/axios';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../redux/store';
 
 const CreateTransactionScreen = ({
   navigation,
@@ -14,9 +17,69 @@ const CreateTransactionScreen = ({
   const [info, setInfo] = useState('');
   const [disabled, setDisabled] = useState(true);
 
-  // const {amount, mode} = route.params;
+  const toast = useToast();
+  const user = useSelector((state: RootState) => state.user);
 
-  // const toast = useToast();
+  const {amount, mode} = route.params;
+
+  const checkIfUserExists = async (): Promise<boolean> => {
+    try {
+      const response = await axiosClient.post('/user/check-user', {
+        searchText: phone,
+      });
+      console.log(response.data);
+      if (response.data.status) {
+        return true;
+      } else {
+        setDisabled(true);
+        setInfo(response.data.message);
+        setTimeout(() => {
+          setInfo('');
+        }, 2000);
+        return false;
+      }
+    } catch (error: any) {
+      console.log(error);
+      setDisabled(true);
+      toast.show(error.message, {
+        type: 'danger',
+      });
+
+      return false;
+    }
+  };
+
+  const createTransaction = async () => {
+    try {
+      const response = await axiosClient.post('/transaction/create', {
+        amount,
+        from: {
+          name: user.name,
+          phone: user.phone,
+        },
+        to: phone,
+        token: user.token,
+      });
+      console.log(response.data);
+      if (response.status === 201) {
+        navigation.popToTop();
+        toast.show(response.data.message, {
+          type: 'success',
+        });
+      } else {
+        setDisabled(true);
+        setInfo(response.data.message);
+        setTimeout(() => {
+          setInfo('');
+        }, 2000);
+      }
+    } catch (error: any) {
+      console.log(error);
+      toast.show(error.message, {
+        type: 'danger',
+      });
+    }
+  };
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -29,7 +92,12 @@ const CreateTransactionScreen = ({
     });
   }, [navigation]);
 
-  const onContinue = () => {};
+  const onContinue = async () => {
+    const userExists = await checkIfUserExists();
+    if (userExists) {
+      createTransaction();
+    }
+  };
 
   const onChangeText = (text: string) => {
     setPhone(text);
