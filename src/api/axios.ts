@@ -1,7 +1,8 @@
 import axios, {type AxiosInstance} from 'axios';
+import {Config} from '../utils/constants';
 
 const axiosClient = axios.create({
-  baseURL: 'http://192.168.100.3:4000',
+  baseURL: Config.baseURL,
 });
 
 export type AxiosInstanceType = AxiosInstance;

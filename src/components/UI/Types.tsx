@@ -24,7 +24,7 @@ export interface NumberInputProps {
   nextRef?: React.RefObject<TextInput>;
   value: string;
   index: string;
-  onChangeText: (text: string, index: number) => void;
+  onChangeText: (text: string, index: string) => void;
   onSubmitEditing?: () => void;
   autoFocus?: boolean;
   style?: StyleProp<TextInputProps['style']>;

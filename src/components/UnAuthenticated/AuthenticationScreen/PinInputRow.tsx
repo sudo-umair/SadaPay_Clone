@@ -2,7 +2,7 @@ import {StyleSheet, TextInput, View} from 'react-native';
 import React, {useState, useRef} from 'react';
 import NumberInput from '../../UI/NumberInput';
 import {type Input, PinInputRowProps} from './Types';
-import {objectData} from '../VerificationScreen/services';
+import {objectData} from './services';
 
 const PinInputRow = ({onSubmit}: PinInputRowProps) => {
   const inputRef1 = useRef() as React.MutableRefObject<TextInput>;
@@ -19,7 +19,7 @@ const PinInputRow = ({onSubmit}: PinInputRowProps) => {
     inp5: '',
   });
 
-  const onChangeInput = (text: string, index: number) => {
+  const onChangeInput = (text: string, index: string) => {
     setInput(prevState => {
       return {
         ...prevState,
@@ -29,6 +29,7 @@ const PinInputRow = ({onSubmit}: PinInputRowProps) => {
   };
 
   const onSubmitEditing = () => {
+    console.log('onSubmitEditing', input);
     const inputString = objectData(input);
     onSubmit(inputString);
   };

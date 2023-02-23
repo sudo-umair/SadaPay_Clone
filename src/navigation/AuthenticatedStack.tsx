@@ -22,6 +22,7 @@ const AuthenticatedStack = () => {
         name="Home"
         options={{
           animation: 'default',
+          statusBarColor: 'transparent',
         }}
         component={HomeScreen}
       />

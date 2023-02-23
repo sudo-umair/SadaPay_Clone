@@ -15,6 +15,7 @@ import axiosClient from '../../api/axios';
 const LoginScreen = ({navigation}: LoginScreenProps) => {
   const [phone, setPhone] = useState('');
   const [name, setName] = useState('');
+  const [info, setInfo] = useState('');
 
   const input2Ref = useRef() as React.MutableRefObject<TextInput>;
   const [disabled, setDisabled] = useState(true);
@@ -34,21 +35,26 @@ const LoginScreen = ({navigation}: LoginScreenProps) => {
   }, [phone, name]);
 
   const onContinue = async () => {
-    await axiosClient
-      .post('/user/check-user', {
+    try {
+      console.log('phone', phone);
+      const response = await axiosClient.post('/user/check-user', {
         searchText: phone,
-      })
-      .then(res => {
-        console.log(res.data);
+      });
+      if (response.data.status) {
+        setInfo('Welcome back');
+      } else {
+        setInfo('Welcome to the app');
+      }
+      setTimeout(() => {
         navigation.navigate('Verification', {
           name,
           phone,
-          type: res.data.status ? 'login' : 'sign-up',
+          type: response.data.status ? 'login' : 'sign-up',
         });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+      }, 1000);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -74,6 +80,7 @@ const LoginScreen = ({navigation}: LoginScreenProps) => {
           placeholder="Muhammad Umair"
           innerRef={input2Ref}
         />
+        <Text style={styles.error}>{info}</Text>
       </View>
       <KeyboardAvoidingView behavior="height">
         <Button
