@@ -14,7 +14,6 @@ const Card = ({transaction}: CardProps) => {
         <View style={styles.row}>
           <Text style={styles.label}>To</Text>
           <Text style={styles.detail}>{transaction.to}</Text>
-          {/* <Text style={styles.detail}>{transaction.to.phone}</Text> */}
         </View>
         <View style={styles.break} />
         <View style={styles.row}>
