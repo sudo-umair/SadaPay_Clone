@@ -21,23 +21,25 @@ const TransactionsList = () => {
   const user = useSelector((state: RootState) => state.user);
   const {name, phone, token} = user;
 
+  const getTransactions = async () => {
+    setIsLoading(true);
+    try {
+      const response = await axiosClient.post('/transaction/get', {
+        phone,
+        token,
+        name,
+      });
+      setTransactions(response.data.transactions);
+      console.log(response.data.message);
+    } catch (error) {
+      console.log(error);
+    }
+    setIsLoading(false);
+  };
+
   useEffect(() => {
-    const getTransactions = async () => {
-      setIsLoading(true);
-      try {
-        const response = await axiosClient.post('/transaction/get', {
-          phone,
-          token,
-          name,
-        });
-        setTransactions(response.data.transactions);
-        console.log(response.data.message);
-      } catch (error) {
-        console.log(error);
-      }
-      setIsLoading(false);
-    };
     getTransactions();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -62,6 +64,8 @@ const TransactionsList = () => {
               }
               nestedScrollEnabled={true}
               style={styles.transactionsList}
+              refreshing={isLoading}
+              onRefresh={getTransactions}
             />
           </ScrollView>
           {transactions.length === 0 && <ListEmpty />}

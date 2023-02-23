@@ -8,7 +8,7 @@ import {
   setIsLoggedIn,
   setIsLoading,
 } from '../../redux/app.slice';
-import {setUser} from '../../redux/user.slice';
+import {setType, setUser} from '../../redux/user.slice';
 import PinInputRow from '../../components/UnAuthenticated/AuthenticationScreen/PinInputRow';
 import axiosClient from '../../api/axios';
 import {useToast} from 'react-native-toast-notifications';
@@ -27,6 +27,8 @@ const AuthenticationScreen = ({navigation}: AuthenticationScreenProps) => {
   const onResetPress = () => {
     dispatch(setIsAuthenticated(false));
     dispatch(setIsLoggedIn(false));
+    dispatch(setUser({}));
+    setType('sign-up');
   };
 
   const loginHandler = async (input: string) => {
