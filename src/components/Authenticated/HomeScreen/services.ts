@@ -48,15 +48,15 @@ export const transactionFormatter = (
 };
 
 export const transactionType = (from: string, phone: string) => {
-  return from === phone;
+  return from !== phone;
 };
 
 export const iconFormatter = (from: string, phone: string) => {
-  return from === phone
+  return from !== phone
     ? 'arrow-bottom-left-bold-outline'
     : 'arrow-top-right-bold-outline';
 };
 
 export const iconColorFormatter = (from: string, phone: string) => {
-  return from === phone ? '#27AE60' : '#EB5757';
+  return from !== phone ? '#27AE60' : '#EB5757';
 };

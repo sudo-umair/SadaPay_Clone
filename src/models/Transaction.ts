@@ -7,8 +7,5 @@ export type ITransaction = {
     name: string;
     phone: string;
   };
-  to: {
-    name: string;
-    phone: string;
-  };
+  to: string;
 };

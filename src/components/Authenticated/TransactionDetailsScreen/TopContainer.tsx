@@ -55,7 +55,7 @@ const TopContainer = ({transaction, user}: TopContainerProps) => {
           From: <Text style={styles.name}>{transaction.from.name}</Text>
         </Text>
         <Text style={styles.person}>
-          To: <Text style={styles.name}>{transaction.to.name}</Text>
+          To: <Text style={styles.name}>{transaction.to}</Text>
         </Text>
         <Text style={styles.date}>{dateTimeFormatter(transaction.date)}</Text>
       </View>

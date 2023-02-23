@@ -38,7 +38,7 @@ const TransactionsList = () => {
       setIsLoading(false);
     };
     getTransactions();
-  }, [phone, token, name]);
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -76,6 +76,7 @@ export default TransactionsList;
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
+    width: '100%',
     display: 'flex',
     flexDirection: 'column',
     backgroundColor: '#ffffff',
@@ -88,8 +89,5 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
   },
 });
