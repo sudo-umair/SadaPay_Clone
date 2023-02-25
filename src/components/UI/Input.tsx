@@ -1,6 +1,6 @@
 import {StyleSheet, TextInput} from 'react-native';
 import React, {useState} from 'react';
-import {InputProps} from '../UnAuthenticated/LoginScreen/Types';
+import {InputProps} from './Types';
 
 const Input = ({
   onChangeText,
