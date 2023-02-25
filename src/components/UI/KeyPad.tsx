@@ -6,7 +6,7 @@ import {type KeyPadProps} from './Types';
 
 const KeyPad = ({onPress, style}: KeyPadProps) => {
   return (
-    <View style={[styles.keysContainer, style ?? {}]}>
+    <View style={[styles.keysContainer, style]}>
       {KEYS.map(text => {
         return (
           <Pressable

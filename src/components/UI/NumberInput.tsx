@@ -42,7 +42,7 @@ const NumberInput = ({
         style={[
           styles.numberInput,
           focused && styles.numberInputFocused,
-          style ?? ({} as any),
+          style,
         ]}
         value={value ?? ''}
         onChangeText={text => onChangeText(text, index)}

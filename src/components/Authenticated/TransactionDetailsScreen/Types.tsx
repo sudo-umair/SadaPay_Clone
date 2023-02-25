@@ -1,9 +1,9 @@
 import {ITransaction} from '../../../models/Transaction';
-import {IUserSlice} from '../../../redux/types';
+import {type IUser} from '../../../models/User';
 
 export interface TopContainerProps {
   transaction: ITransaction;
-  user: IUserSlice;
+  user: IUser;
 }
 
 export interface CardProps {

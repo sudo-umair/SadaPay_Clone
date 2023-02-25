@@ -4,6 +4,7 @@ import {
   TextInput,
   ViewStyle,
   PressableAndroidRippleConfig,
+  TextStyle,
 } from 'react-native';
 
 export interface ButtonProps {
@@ -13,7 +14,7 @@ export interface ButtonProps {
   disabled?: boolean;
   style?: StyleProp<ViewStyle>;
   buttonStyle?: StyleProp<ViewStyle>;
-  textStyle?: object;
+  textStyle?: StyleProp<TextStyle>;
   children?: React.ReactNode;
   isIcon?: boolean;
 }
@@ -27,7 +28,7 @@ export interface NumberInputProps {
   onChangeText: (text: string, index: string) => void;
   onSubmitEditing?: () => void;
   autoFocus?: boolean;
-  style?: StyleProp<TextInputProps['style']>;
+  style?: StyleProp<TextStyle>;
   keyboardType?: TextInputProps['keyboardType'];
   maxLength?: number;
   secureTextEntry?: boolean;
