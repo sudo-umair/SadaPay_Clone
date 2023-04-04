@@ -1,5 +1,9 @@
 This is a self learning project in which a few of the screens were replicated from the SADAPAY App with Authentication flow using redux and react navigation.
 
+## Backend
+
+[sadapay-clone-server](https://github.com/sudo-umair/sadapay-clone-server)
+
 ## Screenshots
 
 ![Screenshot](./screenshots/1.png)
@@ -13,7 +17,3 @@ This is a self learning project in which a few of the screens were replicated fr
 ![Screenshot](./screenshots/9.png)
 ![Screenshot](./screenshots/10.png)
 ![Screenshot](./screenshots/11.png)
-
-## Backend
-
-[sadapay-clone-server](https://github.com/sudo-umair/sadapay-clone-server)
